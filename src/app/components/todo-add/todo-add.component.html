@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <!--header del pop up modal. Non devo per forza aggiungerlo ma se lo aggiungo divide graficamente la parte alta dal resto del body-->
+  <h4 class="modal-title">Aggiungi Todo</h4>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
+  <!--pulsante 'x' per chiudere il pop up del modal-->
+</div>
+
+<div class="modal-body"><!--body dell'pop up modal-->
+  <form [formGroup]="addForm">
+    <div class="mb-3">
+      <label class="form-label">Titolo</label>
+      <input type="text" class="form-control" formControlName="title"
+        [class.is-invalid]="addForm.get('title')?.invalid && addForm.get('title')?.touched">
+      <!--addForm.get('title')?.invalid //controlla se il titolo è valido-->
+      <div class="invalid-feedback">Il titolo è obbligatorio</div>
+      <!--addForm.get('title')?.touched //segnala anche se l'utente tocca la casella ed esce senza inserire niente-->
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Data di
+        scadenza</label><!--non serve la validazione (YYYY-mm-yy) perchè viene gia strutturata con date picker + non è obbligatoria-->
+      <ngb-datepicker formControlName="dueDate"></ngb-datepicker>
+    </div>
+
+  </form>
+</div>
+
+<div class="modal-footer">
+  <!--come per l'header: il footer non è obbligatorio ma divide graficamente il testo del body dal bottone quindi perchè no :-) -->
+  <button type="button" class="btn-aggiungi" (click)="submit()" [disabled]="addForm.invalid">Aggiungi</button>
+  <!--fin tanto che il form non è valido: il pulsante è disabilitato-->
+</div>

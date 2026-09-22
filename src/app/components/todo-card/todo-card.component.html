@@ -1,0 +1,26 @@
+<div class="card mt-2">
+  <div class="card-body">
+    <h5 class="card-title">{{ todo().title }}</h5>
+    <!--se ha una data di scadenza aggiunge il sottotitolo con data di scadenza-->
+    @if (todo().dueDate) {
+      <h6 class="card-subtitle mb-2 text-muted">{{ todo().dueDate | date:'dd/MM/yyyy' }}</h6>
+    }
+    <!--if che verifica se il todo è scaduto e segnala che è scaduto-->
+    <!--colori ricavati dalla documentazione in https://getbootstrap.com/docs/5.0/utilities/background/-->
+    @if (todo().expired) {
+      <span class="badge bg-danger me-1">Scaduto</span>
+    }
+    <!--if che controlla se è completato oppure non ancora completato-->
+    @if (todo().completed) {
+      <span class="badge bg-success">Completato</span>
+    }
+    @else {
+      <span class="badge bg-warning">Non completato</span>
+    }
+    
+    <div class="form-check mt-2">
+      <input class="form-check-input" type="checkbox" [checked]="todo().completed" (change)="interrutoreCompleted()">  <!--interrutore/toggle del completato-->
+      <label class="form-check-label">Completato</label>
+    </div>
+  </div>
+</div>

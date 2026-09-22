@@ -1,3 +1,14 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { TodoListComponent } from './pages/todo-list/todo-list.component';
+export const routes: Routes = [
+  
+  {
+    path: 'todos',
+    component: TodoListComponent
+  },
+  {
+    path: '',
+    redirectTo: '/todos',
+    pathMatch: 'full'
+  }
+];

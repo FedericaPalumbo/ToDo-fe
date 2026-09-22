@@ -1,0 +1,17 @@
+<app-todo-filter
+  [filters]="(filters$ | async)!"
+  (filterChange)="setFilters($event)"
+/>
+
+<app-todo-addpulsante
+  (todoAdded)="addTodo($event)"
+/>
+
+<div class="mt-3">
+  @for (todo of todos$ | async; track todo.id) {
+    <app-todo-card
+      [todo]="todo"
+      (interruttore)="toggleTodo($event)"
+    />
+  }
+</div>
